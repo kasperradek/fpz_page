@@ -1,111 +1,148 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme {
+  /* ==========================================================================
+     FPŻ Design Tokens — Extracted from Figma ("Projekt Strony FPŻ")
+     ========================================================================== */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Brand Palette — Blue (Primary Dominant) */
+  --color-blue-25: #f2f3fb;
+  --color-blue-50: #e7e8f2;
+  --color-blue-75: #c9c9c9;
+  --color-blue-100: #b3b8d5;
+  --color-blue-200: #8f95c1;
+  --color-blue-300: #5c65a5;
+  --color-blue-400: #3c4793;
+  --color-blue-500: #0b1978;
+  --color-blue-600: #0a176d;
+  --color-blue-700: #081255;
+  --color-blue-800: #060e42;
+  --color-blue-900: #050b32;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  /* Brand Palette — Green (Secondary Accent / Primary CTA) */
+  --color-green-50: #eafaeb;
+  --color-green-100: #bff0c0;
+  --color-green-200: #9fe8a2;
+  --color-green-300: #74de78;
+  --color-green-400: #59d85d;
+  --color-green-500: #2fce35;
+  --color-green-600: #2bbb30;
+  --color-green-700: #219226;
+  --color-green-800: #1a711d;
+  --color-green-900: #145716;
+
+  /* Neutrals & Surfaces */
+  --color-surface-page: #fcfcfc;
+  --color-surface-white: #ffffff;
+  --color-gray-1: #c9c9c9;
+  --color-gray-2: #8d8d8d;
+  --color-gray-3: #414141;
+  --color-border-subtle: #ebebeb;
+  --color-border-card: #dbdbdb;
+
+  /* Semantic / Validation */
+  --color-danger-border: #e2483d;
+  --color-danger-text: #ae2e24;
+
+  /* Typography Families */
+  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-inter: "Inter", "Roboto", system-ui, sans-serif;
+
+  /* Type Scale (exact Figma GLOBAL_VARS & skala-og) */
+  --text-display-desktop: 3.75rem;       /* 60px */
+  --text-display-desktop--line-height: 1.2;
+  --text-heading-desktop: 3rem;          /* 48px */
+  --text-heading-desktop--line-height: 1.2;
+  --text-h1: 2.5rem;                     /* 40px */
+  --text-h1--line-height: 3.25rem;       /* 52px */
+  --text-display-mobile: 2.25rem;        /* 36px */
+  --text-display-mobile--line-height: 1.2;
+  --text-heading-mobile: 1.875rem;       /* 30px */
+  --text-heading-mobile--line-height: 1.2;
+  --text-h5: 1.5625rem;                  /* 25px */
+  --text-h5--line-height: 1.4;
+  --text-h6: 1.25rem;                    /* 20px */
+  --text-h6--line-height: 1.4;
+  --text-body-desktop: 1.125rem;         /* 18px */
+  --text-body-desktop--line-height: 1.4;
+  --text-body-mobile: 1rem;              /* 16px */
+  --text-body-mobile--line-height: 1.4;
+  --text-body-small: 0.875rem;           /* 14px */
+  --text-body-small--line-height: 1.4;
+  --text-caption: 0.75rem;               /* 12px */
+  --text-caption--line-height: 1.4;
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-dropdown: 5px;
+  --radius-tag: 6px;
+  --radius-base: 8px;
+  --radius-hero-card: 10px;
+  --radius-accordion: 12px;
+  --radius-lg: 16px;
+
+  /* Layout & Spacing Tokens */
+  --spacing-container: 75rem;            /* 1200px content container */
+  --spacing-nav-inner: 78.125rem;        /* 1250px navbar inner row */
+  --spacing-nav-desktop: 7rem;           /* 112px desktop navbar height */
+  --spacing-nav-mobile: 4.75rem;         /* 76px mobile navbar height */
+  --spacing-section-desktop: 5rem;       /* 80px desktop section padding/gap */
+  --spacing-section-mobile: 2.5rem;      /* 40px mobile section padding/gap */
+
+  /* Shadows */
+  --shadow-card-hover: 0px 4px 6px 0px rgba(175, 175, 175, 0.15);
+  --shadow-hero-card: 1px 3px 15px 1px rgba(0, 0, 0, 0.15);
+  --shadow-soft: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-blue-800);
+    background-color: var(--color-surface-page);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-surface-page);
+    color: var(--color-blue-800);
+    font-size: var(--text-body-mobile);
+    line-height: 1.4;
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: var(--text-body-desktop);
+    }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+/* Custom utility helpers matching Figma glass navbar & container */
+.fpz-navbar-glass {
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  backdrop-filter: blur(2px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.fpz-container {
+  width: 100%;
+  max-width: var(--spacing-container);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 1280px) {
+  .fpz-container {
+    padding-inline: 0;
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }
