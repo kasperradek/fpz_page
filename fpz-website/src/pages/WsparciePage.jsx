@@ -1,5 +1,4 @@
-import { Mail, Phone } from 'lucide-react'
-import { PageBanner } from '../components/ui'
+import { ContactStrip, PageBanner } from '../components/ui'
 
 /**
  * All 6 caregiver support services extracted verbatim from Figma:
@@ -130,73 +129,7 @@ export function WsparciePage() {
         </section>
 
         {/* Zdecydowani? Contact Strip (#2972:9459) */}
-        <section className="flex flex-col gap-10 lg:gap-12">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-heading-mobile lg:text-heading-desktop font-semibold text-blue-500">
-              Zdecydowani?
-            </h2>
-            <p className="text-body-mobile lg:text-h5 text-blue-800">
-              Jeśli możemy jakoś pomóc, nie wahaj się z nami skontaktować!
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-24 items-start justify-items-center pt-2">
-            {/* Zadzwoń */}
-            <div className="flex flex-col items-center text-center gap-2">
-              <Phone className="w-10 h-10 text-blue-500" strokeWidth={1.75} />
-              <span className="text-h6 lg:text-h5 font-semibold text-blue-500">
-                Zadzwoń:
-              </span>
-              <a
-                href="tel:+48726301040"
-                className="text-h6 lg:text-h5 text-gray-3 hover:text-blue-500 transition-colors"
-              >
-                +48 726 301 040
-              </a>
-            </div>
-
-            {/* Napisz */}
-            <div className="flex flex-col items-center text-center gap-2">
-              <Mail className="w-10 h-10 text-blue-500" strokeWidth={1.75} />
-              <span className="text-h6 lg:text-h5 font-semibold text-blue-500">
-                Napisz:
-              </span>
-              <a
-                href="mailto:marketing@pelna-zycia.pl"
-                className="text-h6 lg:text-h5 text-gray-3 hover:text-blue-500 transition-colors"
-              >
-                marketing@pelna-zycia.pl
-              </a>
-            </div>
-
-            {/* Zaobserwuj */}
-            <div className="flex flex-col items-center text-center gap-2">
-              <svg
-                className="w-10 h-10 text-blue-500"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-              <span className="text-h6 lg:text-h5 font-semibold text-blue-500">
-                Zaobserwuj:
-              </span>
-              <a
-                href="https://www.facebook.com/fundacjapelnazycia/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-h6 lg:text-h5 text-gray-3 underline hover:text-blue-500 transition-colors"
-              >
-                Facebook
-              </a>
-            </div>
-          </div>
-        </section>
+        <ContactStrip subtitle="Jeśli możemy jakoś pomóc, nie wahaj się z nami skontaktować!" />
 
         {/* Bottom EU Co-financing Posters (#2972:9456) */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-[101px] items-center">
