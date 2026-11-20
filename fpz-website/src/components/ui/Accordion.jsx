@@ -8,17 +8,31 @@ import { ChevronDown } from 'lucide-react'
  * - Open: Blue-25 (#F2F3FB) body background separated by 2px Blue-75 divider
  */
 export function AccordionItem({
+  id,
   title,
   children,
   defaultOpen = false,
+  isOpen: controlledOpen,
+  onToggle,
   className = '',
 }) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
+  const [internalOpen, setInternalOpen] = useState(defaultOpen)
+  const isControlled = controlledOpen !== undefined
+  const isOpen = isControlled ? controlledOpen : internalOpen
+
+  const handleToggle = () => {
+    if (isControlled) {
+      onToggle?.(!isOpen)
+    } else {
+      setInternalOpen((prev) => !prev)
+    }
+  }
 
   return (
     <div
+      id={id}
       className={[
-        'rounded-accordion border-2 border-blue-75 overflow-hidden transition-colors',
+        'scroll-mt-32 rounded-accordion border-2 border-blue-75 overflow-hidden transition-colors',
         isOpen ? 'bg-blue-25' : 'bg-surface-white',
         className,
       ]
@@ -28,7 +42,7 @@ export function AccordionItem({
       <button
         type="button"
         aria-expanded={isOpen}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={handleToggle}
         className={[
           'w-full flex items-center justify-between gap-4 text-left bg-surface-white px-5 py-5 lg:px-[50px] lg:py-[30px] cursor-pointer transition-colors hover:bg-blue-25/50',
           isOpen ? 'border-b-2 border-blue-75' : '',
@@ -48,7 +62,7 @@ export function AccordionItem({
       </button>
 
       {isOpen && (
-        <div className="px-5 py-6 lg:px-[50px] lg:py-10 text-body-mobile lg:text-body-desktop text-blue-800 bg-blue-25">
+        <div className="px-5 py-6 lg:px-[35px] lg:py-10 text-body-mobile lg:text-body-desktop text-blue-800 bg-blue-25">
           {children}
         </div>
       )}

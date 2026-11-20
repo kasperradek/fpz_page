@@ -4,11 +4,18 @@ import { Footer } from './Footer'
 import { Navbar } from './Navbar'
 
 export function Layout() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
 
   useEffect(() => {
+    if (hash) {
+      const target = document.getElementById(hash.slice(1))
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
+      }
+    }
     window.scrollTo({ top: 0, behavior: 'instant' })
-  }, [pathname])
+  }, [pathname, hash])
 
   return (
     <div className="min-h-screen flex flex-col bg-surface-page text-blue-800">

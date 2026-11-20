@@ -5,17 +5,25 @@ import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
 import { SitemapPage } from './pages/SitemapPage'
+import { TerapiePage } from './pages/TerapiePage'
+import { WsparciePage } from './pages/WsparciePage'
+
+const IMPLEMENTED_IDS = new Set(['home', 'terapie', 'wsparcie'])
 
 export function App() {
-  const innerViews = SITE_VIEWS.filter((view) => view.id !== 'home')
+  const placeholderViews = SITE_VIEWS.filter(
+    (view) => !IMPLEMENTED_IDS.has(view.id),
+  )
 
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="/terapie" element={<TerapiePage />} />
+          <Route path="/wsparcie" element={<WsparciePage />} />
 
-          {innerViews.map((view) => (
+          {placeholderViews.map((view) => (
             <Route
               key={view.id}
               path={view.routePattern || view.path}
