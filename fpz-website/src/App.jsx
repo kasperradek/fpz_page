@@ -1,13 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/layout/Layout'
 import { SITE_VIEWS } from './data/routes'
+import { AktualnosciPage } from './pages/AktualnosciPage'
 import { BiznesPage } from './pages/BiznesPage'
 import { ChcePomocPage } from './pages/ChcePomocPage'
+import { DarowiznaPage } from './pages/DarowiznaPage'
+import { DarowiznaPotwierdzeniePage } from './pages/DarowiznaPotwierdzeniePage'
 import { HomePage } from './pages/HomePage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { OFundacjiPage } from './pages/OFundacjiPage'
 import { ONasPage } from './pages/ONasPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
 import { PodatekPage } from './pages/PodatekPage'
+import { PostPage } from './pages/PostPage'
+import { ProjektyPage } from './pages/ProjektyPage'
 import { SitemapPage } from './pages/SitemapPage'
 import { TerapiePage } from './pages/TerapiePage'
 import { WolontariatPage } from './pages/WolontariatPage'
@@ -22,6 +28,12 @@ const IMPLEMENTED_IDS = new Set([
   'biznes',
   'wolontariat',
   'podatek',
+  'darowizna',
+  'darowizna-potwierdzenie',
+  'aktualnosci',
+  'post',
+  'o-fundacji',
+  'projekty',
 ])
 
 export function App() {
@@ -41,6 +53,16 @@ export function App() {
           <Route path="/dla-biznesu" element={<BiznesPage />} />
           <Route path="/wolontariat" element={<WolontariatPage />} />
           <Route path="/1-5-procent" element={<PodatekPage />} />
+          <Route path="/darowizna" element={<DarowiznaPage />} />
+          <Route
+            path="/darowizna/potwierdzenie"
+            element={<DarowiznaPotwierdzeniePage />}
+          />
+          <Route path="/aktualnosci" element={<AktualnosciPage />} />
+          <Route path="/aktualnosci/:slug" element={<PostPage />} />
+          <Route path="/post" element={<PostPage />} />
+          <Route path="/o-fundacji" element={<OFundacjiPage />} />
+          <Route path="/projekty" element={<ProjektyPage />} />
 
           {placeholderViews.map((view) => (
             <Route
@@ -49,16 +71,6 @@ export function App() {
               element={<PlaceholderPage view={view} />}
             />
           ))}
-
-          {/* Direct alias for blog post preview */}
-          <Route
-            path="/post"
-            element={
-              <PlaceholderPage
-                view={SITE_VIEWS.find((v) => v.id === 'post')}
-              />
-            }
-          />
 
           <Route path="/mapa-strony" element={<SitemapPage />} />
           <Route path="*" element={<NotFoundPage />} />
